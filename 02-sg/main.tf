@@ -6,6 +6,7 @@ module "vpn" {
   vpc_id         = data.aws_vpc.default.id
   sg_name        = "vpn"
   #sg_ingress_rules = var.mongodb_sg_ingress_rules
+  common_tags    = var.common_tags
 }
 
 module "mongodb" {
@@ -16,6 +17,7 @@ module "mongodb" {
   vpc_id         = data.aws_ssm_parameter.vpc_id.value
   sg_name        = "mongodb"
   #sg_ingress_rules = var.mongodb_sg_ingress_rules
+  common_tags    = var.common_tags
 }
 
 module "redis" {
@@ -26,6 +28,7 @@ module "redis" {
   vpc_id         = data.aws_ssm_parameter.vpc_id.value
   sg_name        = "redis"
   #sg_ingress_rules = var.mongodb_sg_ingress_rules
+  common_tags    = var.common_tags
 }
 
 module "mysql" {
@@ -36,6 +39,7 @@ module "mysql" {
   vpc_id         = data.aws_ssm_parameter.vpc_id.value
   sg_name        = "mysql"
   #sg_ingress_rules = var.mongodb_sg_ingress_rules
+  common_tags    = var.common_tags
 }
 
 module "rabbitmq" {
@@ -46,6 +50,7 @@ module "rabbitmq" {
   vpc_id         = data.aws_ssm_parameter.vpc_id.value
   sg_name        = "rabbitmq"
   #sg_ingress_rules = var.mongodb_sg_ingress_rules
+  common_tags    = var.common_tags
 }
 
 module "catalogue" {
@@ -56,6 +61,7 @@ module "catalogue" {
   vpc_id         = data.aws_ssm_parameter.vpc_id.value
   sg_name        = "catalogue"
   #sg_ingress_rules = var.mongodb_sg_ingress_rules
+  common_tags    = var.common_tags
 }
 
 module "user" {
@@ -66,6 +72,7 @@ module "user" {
   vpc_id         = data.aws_ssm_parameter.vpc_id.value
   sg_name        = "user"
   #sg_ingress_rules = var.mongodb_sg_ingress_rules
+  common_tags    = var.common_tags
 }
 
 module "cart" {
@@ -76,6 +83,7 @@ module "cart" {
   vpc_id         = data.aws_ssm_parameter.vpc_id.value
   sg_name        = "cart"
   #sg_ingress_rules = var.mongodb_sg_ingress_rules
+  common_tags    = var.common_tags
 }
 
 module "shipping" {
@@ -86,6 +94,7 @@ module "shipping" {
   vpc_id         = data.aws_ssm_parameter.vpc_id.value
   sg_name        = "shipping"
   #sg_ingress_rules = var.mongodb_sg_ingress_rules
+  common_tags    = var.common_tags
 }
 
 module "payment" {
@@ -96,6 +105,7 @@ module "payment" {
   vpc_id         = data.aws_ssm_parameter.vpc_id.value
   sg_name        = "payment"
   #sg_ingress_rules = var.mongodb_sg_ingress_rules
+  common_tags    = var.common_tags
 }
 
 module "web" {
@@ -106,6 +116,7 @@ module "web" {
   vpc_id         = data.aws_ssm_parameter.vpc_id.value
   sg_name        = "web"
   #sg_ingress_rules = var.mongodb_sg_ingress_rules
+  common_tags    = var.common_tags
 }
 
 #openvpn
