@@ -5,11 +5,11 @@ terraform {
       version = "5.58.0"
     }
   }
-backend "s3" {
-  bucket ="roboshop-terraform-dev-remote-state"
-  key="roboshop-terraform-dev-vpc"
-  region="us-east-1"
-  dynamodb_table="roboshop-terraform-dev-remote-state-locking"
+  backend "s3" {
+    bucket         = "roboshop-terraform-remote-state"
+    key            = "roboshop-terraform-vpc"
+    region         = "us-east-1"
+    dynamodb_table = "roboshop-terraform-locking"
   }
 }
 

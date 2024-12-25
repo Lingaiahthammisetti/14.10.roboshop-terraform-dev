@@ -7,10 +7,10 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "daws76s-remote-state"
-    key            = "sg"
+    bucket         = "roboshop-terraform-remote-state"
+    key            = "roboshop-terraform-sg"
     region         = "us-east-1"
-    dynamodb_table = "daws76s-locking"
+    dynamodb_table = "roboshop-terraform-locking"
   }
 }
 
