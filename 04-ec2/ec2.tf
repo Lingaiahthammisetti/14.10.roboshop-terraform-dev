@@ -177,6 +177,23 @@ module "web" {
     }
   )
 }
+module "dispatch" {
+  source                 = "terraform-aws-modules/ec2-instance/aws"
+  ami = data.aws_ami.rhel_info.id
+  name                   = "${local.ec2_name}-dispatch"
+  instance_type          = "t2.micro"
+  vpc_security_group_ids = [data.aws_ssm_parameter.dispatch_sg_id.value]
+  subnet_id              = local.public_subnet_id
+  tags = merge(
+    var.common_tags,
+    {
+      Component = "dispatch"
+    },
+    {
+      Name = "${local.ec2_name}-dispatch"
+    }
+  )
+}
 
 module "ansible" {
   source                 = "terraform-aws-modules/ec2-instance/aws"
@@ -280,6 +297,14 @@ module "records" {
       ttl     = 1
       records = [
         "${module.web.private_ip}",
+      ]
+    },
+    {
+      name    = "dispatch"
+      type    = "A"
+      ttl     = 1
+      records = [
+        "${module.dispatch.private_ip}",
       ]
     },
   ]
