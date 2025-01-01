@@ -118,6 +118,18 @@ module "web" {
   #sg_ingress_rules = var.mongodb_sg_ingress_rules
   common_tags    = var.common_tags
 }
+module "dispatch" {
+  source         = "../../5.12.terraform-aws-securitygroup"
+  project_name   = var.project_name
+  environment    = var.environment
+  sg_description = "SG for Dispatch"
+  vpc_id         = data.aws_ssm_parameter.vpc_id.value
+  sg_name        = "dispatch"
+  #sg_ingress_rules = var.mongodb_sg_ingress_rules
+  common_tags    = var.common_tags
+}
+
+
 
 #openvpn
 resource "aws_security_group_rule" "vpn_home" {
@@ -347,6 +359,14 @@ resource "aws_security_group_rule" "web_vpn" {
   to_port                  = 22
   protocol                 = "tcp"
   security_group_id        = module.web.sg_id
+}
+resource "aws_security_group_rule" "dispatch_vpn" {
+  source_security_group_id = module.vpn.sg_id
+  type                     = "ingress"
+  from_port                = 22
+  to_port                  = 22
+  protocol                 = "tcp"
+  security_group_id        = module.dispatch.sg_id
 }
 
 resource "aws_security_group_rule" "web_internet" {
