@@ -2,8 +2,10 @@
 
 yum install ansible -y
 cd /tmp
-git clone https://github.com/Lingaiahthammisetti/4.14.roboshop-ansible-roles-tf.git
-cd 4.14.roboshop-ansible-roles-tf
+#git clone https://github.com/Lingaiahthammisetti/4.14.roboshop-ansible-roles-tf.git
+git clone https://github.com/Lingaiahthammisetti/4.10.1.expense-ansible-roles-tf-terraform-dev.git
+
+cd 4.10.1.expense-ansible-roles-tf-terraform-dev
 ansible-playbook -e component=mongodb main.yaml
 ansible-playbook -e component=redis main.yaml
 ansible-playbook -e component=rabbitmq main.yaml
